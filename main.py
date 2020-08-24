@@ -114,10 +114,10 @@ if __name__ == '__main__':
 
         async def on_shutdown(dp):
             await aq.bot.delete_webhook()
+
         e = executor.Executor(aq.dp)
         executor._setup_callbacks(e, on_startup=on_startup, on_shutdown=on_shutdown)
-        e.set_web_app(aq.webapp)
-        e.set_webhook('/webhook')
+        e.set_webhook('/webhook', web_app=aq.webapp)
         e.start_webhook()
         # executor.start_webhook(
         #     aq.dp,
