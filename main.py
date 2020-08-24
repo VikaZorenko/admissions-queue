@@ -115,18 +115,13 @@ if __name__ == '__main__':
         async def on_shutdown(dp):
             await aq.bot.delete_webhook()
 
-        e = executor.Executor(aq.dp)
-        e.set_webhook('/webhook', web_app=aq.webapp)
-        executor._setup_callbacks(e, on_startup=on_startup, on_shutdown=on_shutdown)
-        e.start_webhook()
-        # executor.start_webhook(
-        #     aq.dp,
-        #     webhook_path='/webhook',
-        #     on_startup=on_startup,
-        #     on_shutdown=on_shutdown,
-        #     host='localhost',
-        #     port=port
-        # )
+        e = executor.set_webhook(aq.dp,
+                                 webhook_path='/webhook',
+                                 on_startup=on_startup,
+                                 on_shutdown=on_shutdown,
+                                 web_app=aq.webapp)
+
+        e.start_webhook('/webhook')
 
     else:
         executor.start_polling(aq.dp, skip_updates=True)
