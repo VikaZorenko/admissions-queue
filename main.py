@@ -105,7 +105,6 @@ if __name__ == '__main__':
         host = os.environ['WEBHOOK_HOST']
         port = os.environ['WEBHOOK_PORT']
 
-
         async def on_startup(dp):
             # await aq.runner.setup()
             # site = web.TCPSite(aq.runner, "127.0.0.1", 5006)
@@ -121,7 +120,7 @@ if __name__ == '__main__':
                                  on_shutdown=on_shutdown,
                                  web_app=aq.webapp)
 
-        e.run_app()
+        e.run_app(host=host, port=port)
 
     else:
         executor.start_polling(aq.dp, skip_updates=True)
