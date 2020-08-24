@@ -120,8 +120,8 @@ if __name__ == '__main__':
                                  on_startup=on_startup,
                                  on_shutdown=on_shutdown,
                                  web_app=aq.webapp)
-        e._freeze = False  # shitty but should work
-        e.start_webhook('/webhook')
+
+        e.run_app()
 
     else:
         executor.start_polling(aq.dp, skip_updates=True)
